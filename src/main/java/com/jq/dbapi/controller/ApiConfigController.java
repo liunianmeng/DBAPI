@@ -86,8 +86,8 @@ public class ApiConfigController {
 
     @RequestMapping("/getIPPort")
     public String getIPPort() {
-        String ip = IPUtil.getIpAddress();
-        return ip + ":" + port;
+//        String ip = IPUtil.getIpAddress();
+        return "127.0.0.1" + ":" + port;
     }
 
     @RequestMapping("/request")
