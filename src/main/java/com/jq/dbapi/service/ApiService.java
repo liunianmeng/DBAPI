@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jq.dbapi.domain.ApiConfig;
 import com.jq.dbapi.domain.DataSource;
+import com.jq.dbapi.util.JdbcUtil;
 import com.jq.dbapi.util.PoolManager;
 import com.jq.dbapi.util.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +52,7 @@ public class ApiService {
         try {
 
             connection = PoolManager.getPooledConnection(datasource);
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
+            ResultSet rs = JdbcUtil.query(sql, connection);
             int columnCount = rs.getMetaData().getColumnCount();
 
             List<String> columns = new ArrayList<>();
